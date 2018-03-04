@@ -1,37 +1,68 @@
+// @flow
 import React from 'react';
+import { cond, T, propEq } from 'ramda';
 
 import style from './Page.css';
 
-export default class Page extends React.Component {
+type PageLineType = 'title' | 'act' | 'chapter' | 'prose' | 'dialog';
 
-  whoYou() {
-
-  }
-
-  render () {
-    return (
-      <div className={style.Page}>
-        <span
-          className={style.title}
-        >
-          The Infamous master of the hidden chamber under the moon of the guiding star
-        </span>
-        <span className={style.act}>
-          I
-        </span>
-        <span className={style.chapter}>
-          # All things begin before yer mother
-        </span>
-        <span className={style.prose}>
-          It all began when i was a scrub ye soem some
-        </span>
-        <span className={style.dialog}>
-            SOme dude: 'Over there here'.
-        </span>
-        <span className={style.dialog}>
-            Some some: 'How there over there'.
-        </span>
-      </div>
-    );
-  }
+type PageLine = {
+  type: PageLineType;
+  value: string;
 };
+
+type Props = {
+  text: Array<PageLine>;
+};
+
+const RenderTitle = (line: PageLine, index: number) => (
+  <span
+    key={index}
+    className={style.title}
+  >{line.value}</span>
+);
+
+const RenderAct = (line: PageLine, index: number) => (
+  <span
+    key={index}
+    className={style.act}
+  >{line.value}</span>
+);
+
+const RenderChapter = (line: PageLine, index: number) => (
+  <span
+    key={index}
+    className={style.chapter}
+  >{line.value}</span>
+);
+
+const RenderProse = (line: PageLine, index: number) => (
+  <span
+    key={index}
+    className={style.prose}
+  >{line.value}</span>
+);
+
+const RenderDialog = (line: PageLine, index: number) => (
+  <span
+    key={index}
+    className={style.dialog}
+  >{line.value}</span>
+);
+
+const RenderLine = cond([
+  [propEq('type', 'title'), RenderTitle],
+  [propEq('type', 'act'), RenderAct],
+  [propEq('type', 'chapter'), RenderChapter],
+  [propEq('type', 'prose'), RenderProse],
+  [propEq('type', 'dialog'), RenderDialog],
+  [T, RenderProse],
+]);
+
+const Page = (props: Props) => (
+  <div className={style.Page}>
+    {props.text.map(RenderLine)}
+  </div>
+);
+
+export default Page;
