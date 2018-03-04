@@ -1,0 +1,6 @@
+.ControlBar {
+  width: 100vw;
+  height: 30px;
+  border-bottom: black solid 1px;
+  background-color: #1D3557;
+}

@@ -1,0 +1,23 @@
+.WriteArea {
+  flex: 1;
+  display: flex;
+  height: 100vh;
+}
+
+/* .__input {
+  color: #657b83;
+  background-color: #fdf6e3;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  line-height: 22px;
+
+  padding: 40px 30px 0px;
+  flex: 1;
+  height: 100vh;
+  border: none;
+  outline: none;
+}
+
+.__input::selection {
+  background-color: #eee8d5;
+} */

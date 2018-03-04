@@ -1,0 +1,48 @@
+.Page {
+  color: #657b83;
+  background-color: #fdf6e3;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 40px 30px 0px;
+  flex: 1;
+  height: 100vh;
+  border: none;
+  outline: none;
+}
+
+.Page::selection {
+  background-color: #eee8d5;
+}
+
+.pagePartBase {
+  display: flex;
+  width: 100%;
+}
+
+.title {
+  composes: pagePartBase;
+  /* font-weight: 600; */
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.act {
+  composes: pagePartBase;
+  color: #2aa198;
+}
+
+.chapter {
+  composes: pagePartBase;
+  color: #268bd2;
+  /* color: #268bd2 */
+}
+
+.prose {
+  composes: pagePartBase;
+}
+
+.dialog {
+  composes: pagePartBase;
+}
