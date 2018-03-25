@@ -1,4 +1,4 @@
-import { identity, T, cond, flip, propEq } from 'ramda';
+import { identity, T, cond, flip, propEq, assoc } from 'ramda';
 
 import WriteActions from './WriteActions';
 import WriteState from './WriteState';
@@ -9,5 +9,9 @@ export default (state = new WriteState(), action) => cond([
 ])(state, action);
 
 function typeText (state, action) {
-  return state;
+  return assoc(
+    'text',
+    action.text,
+    state
+  );
 }

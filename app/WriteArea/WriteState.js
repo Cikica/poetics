@@ -1,5 +1,5 @@
 export default class WriteState {
   constructor () {
-    this.content = "";
+    this.text = "";
   }
 }
