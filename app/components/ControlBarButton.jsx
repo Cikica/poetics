@@ -3,8 +3,11 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import styles from './ControlBarButton.css';
 
-const ControlBarButton = ({ icon }) => (
-  <div className={styles.ControlBarButton}>
+const ControlBarButton = ({ icon, onClick }) => (
+  <div
+    className={styles.ControlBarButton}
+    onClick={onClick}
+  >
     <FontAwesomeIcon icon={icon} />
   </div>
 );
