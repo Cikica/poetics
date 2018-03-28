@@ -1,7 +1,7 @@
-import { identity, T, cond, flip, propEq, assoc } from 'ramda';
+import { pipe, identity, T, cond, flip, propEq, assoc } from 'ramda';
 
 import WriteActions from './WriteActions';
-import WriteState from './WriteState';
+import WriteState, { visibleText } from './WriteState';
 
 export default (state = new WriteState(), action) => cond([
   [flip(propEq("type", WriteActions.WRITE)), typeText],

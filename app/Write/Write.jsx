@@ -15,8 +15,8 @@ import {
   filterByActAction,
   filterByOutlineAction
 } from './WriteActions';
-
-import styles from './WriteArea.css';
+// Style
+import styles from './Write.css';
 
 type Props = {};
 
