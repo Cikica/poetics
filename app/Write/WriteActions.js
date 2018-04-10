@@ -4,6 +4,7 @@ const actions = {
   FILTER_BY_SCENE: 'userFiltersByScene',
   FILTER_BY_ACT: 'userFiltersByAct',
   FILTER_BY_OUTLINE: 'userFiltersByOutline',
+  SAVE: 'userSavesStory',
 };
 
 export default actions;
@@ -27,4 +28,8 @@ export const filterByActAction = () => ({
 
 export const filterByOutlineAction = () => ({
   type: actions.FILTER_BY_OUTLINE
+});
+
+export const saveAction = () => ({
+  type: actions.SAVE
 });
