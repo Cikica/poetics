@@ -1,17 +1,9 @@
-/* eslint global-require: 0, flowtype-errors/show-errors: 0 */
-
-/**
- * This module executes inside of electron's main process. You can start
- * electron renderer process from here and communicate with the other processes
- * through IPC.
- *
- * When running `npm run build` or `npm run build-main`, this file is compiled to
- * `./app/main.prod.js` using webpack. This gives us some performance wins.
- *
- * @flow
- */
+import { createStore, applyMiddleware, compose } from 'redux';
+import { forwardToRenderer, triggerAlias, replayActionMain } from 'electron-redux';
 import { app, BrowserWindow } from 'electron';
 import MenuBuilder from './menu';
+
+import RootReducer from './RootReducer';
 
 let mainWindow = null;
 
@@ -28,6 +20,7 @@ if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true')
 }
 
 const installExtensions = async () => {
+
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
   const extensions = [
@@ -40,10 +33,17 @@ const installExtensions = async () => {
     .catch(console.log);
 };
 
+const store = createStore(
+  RootReducer,
+  {}, // optional
+  applyMiddleware(
+    triggerAlias, // optional, see below
+    // ...otherMiddleware,
+    forwardToRenderer,
+  ),
+);
 
-/**
- * Add event listeners...
- */
+replayActionMain(store);
 
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
@@ -55,10 +55,13 @@ app.on('window-all-closed', () => {
 
 
 app.on('ready', async () => {
+
+  // EXTENSIONS
   if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
     await installExtensions();
   }
 
+  // WINDOW
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
@@ -67,20 +70,20 @@ app.on('ready', async () => {
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
-  // @TODO: Use 'ready-to-show' event
-  //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
-  mainWindow.webContents.on('did-finish-load', () => {
-    if (!mainWindow) {
-      throw new Error('"mainWindow" is not defined');
-    }
-    mainWindow.show();
-    mainWindow.focus();
-  });
+  mainWindow.webContents
+    .on('did-finish-load', () => {
+      if (!mainWindow) {
+        throw new Error('"mainWindow" is not defined');
+      }
+      mainWindow.show();
+      mainWindow.focus();
+    });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
 
-  const menuBuilder = new MenuBuilder(mainWindow);
+  // MENU
+  const menuBuilder = new MenuBuilder(mainWindow, store);
   menuBuilder.buildMenu();
 });

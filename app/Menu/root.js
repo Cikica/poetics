@@ -6,9 +6,9 @@ import edit from './edit';
 import view from './view';
 import window from './window';
 
-export default (mainWindow: BrowserWindow) => [
-  main(mainWindow),
-  edit(mainWindow),
-  view(mainWindow),
-  window(mainWindow),
+export default (mainWindow, store) => [
+  main(mainWindow, store),
+  edit(mainWindow, store),
+  view(mainWindow, store),
+  window(mainWindow, store),
 ];

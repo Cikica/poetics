@@ -9,8 +9,7 @@ const Page = (props: Props) => (
     <textarea
       className={style.Textarea}
       onChange={(event) => props.onType(event.target.value)}
-    >
-    </textarea>
+    ></textarea>
   </div>
 );
 

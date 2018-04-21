@@ -3,10 +3,10 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
 import Root from './Root';
-import { configureStore, history } from './store/configureStore';
+import { store, history } from './store/configureStore';
 import './app.global.css';
 
-const store = configureStore();
+// const store = configureStore();
 
 render(
   <AppContainer>

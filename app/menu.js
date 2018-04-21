@@ -5,10 +5,9 @@ import MenuRoot from './Menu/root';
 
 export default class MenuBuilder {
 
-  mainWindow: BrowserWindow;
-
-  constructor(mainWindow: BrowserWindow) {
+  constructor(mainWindow, store) {
     this.mainWindow = mainWindow;
+    this.store = store;
   }
 
   buildMenu() {
@@ -17,14 +16,14 @@ export default class MenuBuilder {
       this.setupDevelopmentEnvironment();
     }
 
-    const template = MenuRoot(this.mainWindow);
+    const template = MenuRoot(this.mainWindow, this.store);
     const menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
 
     return menu;
   }
 
-  setupDevelopmentEnvironment() {
+    setupDevelopmentEnvironment() {
     this.mainWindow.openDevTools();
     this.mainWindow.webContents
       .on('context-menu', (e, props) => {
