@@ -19,7 +19,7 @@ const history = createHashHistory();
 const store = createStore(
   RootReducer,
   getInitialStateRenderer(),
-  // getEnhancerComposer()(
+  getEnhancerComposer()(
     applyMiddleware(
       forwardToMain,
       thunk,
@@ -29,7 +29,7 @@ const store = createStore(
       }),
       routerMiddleware(history)
     )
-  // )
+  )
 );
 
 replayActionRenderer(store);

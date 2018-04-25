@@ -1,9 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { forwardToRenderer, triggerAlias, replayActionMain } from 'electron-redux';
 import { app, BrowserWindow } from 'electron';
 import MenuBuilder from './menu';
-
-import RootReducer from './RootReducer';
+import setupAndGetMainStore from './store/mainStore';
 
 let mainWindow = null;
 
@@ -33,18 +30,10 @@ const installExtensions = async () => {
     .catch(console.log);
 };
 
-const store = createStore(
-  RootReducer,
-  {}, // optional
-  applyMiddleware(
-    triggerAlias, // optional, see below
-    // ...otherMiddleware,
-    forwardToRenderer,
-  ),
-);
+// STORE
+const store = setupAndGetMainStore();
 
-replayActionMain(store);
-
+// ON CLOSE
 app.on('window-all-closed', () => {
   // Respect the OSX convention of having the application in memory even
   // after all windows have been closed
@@ -86,4 +75,5 @@ app.on('ready', async () => {
   // MENU
   const menuBuilder = new MenuBuilder(mainWindow, store);
   menuBuilder.buildMenu();
+
 });
