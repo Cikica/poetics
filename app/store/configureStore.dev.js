@@ -4,8 +4,10 @@ import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import { forwardToMain, replayActionRenderer, getInitialStateRenderer } from 'electron-redux';
+import { createEpicMiddleware } from 'redux-observable';
 
 import RootReducer from './../RootReducer';
+import RootEpic from './../RootEpic';
 
 
 const getEnhancerComposer = () => {
@@ -27,7 +29,8 @@ const store = createStore(
         level: 'info',
         collapsed: true
       }),
-      routerMiddleware(history)
+      routerMiddleware(history),
+      createEpicMiddleware(RootEpic)
     )
   )
 );

@@ -1,10 +1,7 @@
 const actions = {
   WRITE: 'writeContent',
-  SHOW_ALL_TEXT: 'userWantsToSeeAll',
-  FILTER_BY_SCENE: 'userFiltersByScene',
-  FILTER_BY_ACT: 'userFiltersByAct',
-  FILTER_BY_OUTLINE: 'userFiltersByOutline',
   SAVE: 'userSavesStory',
+  SAVE_COMPLETE: 'userSavedAStory',
 };
 
 export default actions;
@@ -14,22 +11,12 @@ export const writeAction = (text) => ({
   text
 });
 
-export const showAllTextAction = () => ({
-  type: actions.SHOW_ALL_TEXT
-});
-
-export const filterBySceneAction = () => ({
-  type: actions.FILTER_BY_SCENE
-});
-
-export const filterByActAction = () => ({
-  type: actions.FILTER_BY_ACT
-});
-
-export const filterByOutlineAction = () => ({
-  type: actions.FILTER_BY_OUTLINE
-});
-
 export const saveAction = () => ({
   type: actions.SAVE
+});
+
+export const saveCompleteAction = ({ payload, error }) => ({
+  type: actions.SAVE_COMPLETE,
+  payload,
+  error
 });

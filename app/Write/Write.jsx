@@ -5,8 +5,6 @@ import { faICursor, faDotCircle, faCircle, faGenderless } from '@fortawesome/fon
 
 // Components
 import Page from './../components/Page';
-import ControlBar from './../components/ControlBar';
-import ControlBarButton from './../components/ControlBarButton';
 // Actions
 import {
   writeAction,
@@ -39,28 +37,6 @@ class WriteAreaContainer extends Component<Props> {
   render() {
     return (
       <div className={styles.WriteArea}>
-        <ControlBar>
-          {/* ALL TEXT */}
-          <ControlBarButton
-            icon={faICursor}
-            onClick={this.props.showAllText}
-          />
-          {/* SCENES */}
-          <ControlBarButton
-            icon={faDotCircle}
-            onClick={this.props.filterByScene}
-          />
-          {/* ACTS */}
-          <ControlBarButton
-            icon={faCircle}
-            onClick={this.props.filterByAct}
-          />
-          {/* OUTLINES */}
-          <ControlBarButton
-            icon={faGenderless}
-            onClick={this.props.filterByOutline}
-          />
-        </ControlBar>
         <Page
           text={'Textus mc textus'}
           onType={this.props.typeText}
