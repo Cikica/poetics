@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-import SaveEpic from './epics/SaveEpic';
+import SaveStoryEpic from './epics/SaveStoryEpic';
 
 export default combineEpics(
-  SaveEpic
+  SaveStoryEpic
 );

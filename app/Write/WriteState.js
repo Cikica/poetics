@@ -7,6 +7,7 @@ export const visibleText = {
 
 export default class WriteState {
   constructor () {
-    this.text = '';
+    this.title = 'Who You Now';
+    this.text = 'moustache wut wut who what';
   }
 }

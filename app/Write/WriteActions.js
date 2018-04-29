@@ -12,11 +12,14 @@ export const writeAction = (text) => ({
 });
 
 export const saveAction = () => ({
-  type: actions.SAVE
+  type: actions.SAVE,
 });
 
-export const saveCompleteAction = ({ payload, error }) => ({
-  type: actions.SAVE_COMPLETE,
-  payload,
-  error
-});
+export const saveCompleteAction = (wut) => {
+  console.log(wut);
+  return {
+    type: actions.SAVE_COMPLETE,
+    // payload,
+    // error
+  }
+};
