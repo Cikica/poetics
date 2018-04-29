@@ -1,4 +1,5 @@
 const actions = {
+  WRITE_TITLE: 'writeTitle',
   WRITE: 'writeContent',
   SAVE: 'userSavesStory',
   SAVE_COMPLETE: 'userSavedAStory',
@@ -6,9 +7,14 @@ const actions = {
 
 export default actions;
 
+export const writeTitleAction = (title) => ({
+  type: actions.WRITE_TITLE,
+  payload: title
+});
+
 export const writeAction = (text) => ({
   type: actions.WRITE,
-  text
+  payload: text
 });
 
 export const saveAction = () => ({

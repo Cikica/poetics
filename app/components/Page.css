@@ -1,6 +1,6 @@
 .WriteBase {
   color: #657b83;
-  background-color: #fdf6e3;
+  background-color: transparent;
   font-family: 'Courier New', Courier, monospace;
   font-size: 20px;
   line-height: 24px;
@@ -13,17 +13,17 @@
 }
 
 .Page {
-  composes: WriteBase;
   padding: 0px 30px;
   flex: 1;
-  height: 100vh;
+  height: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
 .Textarea {
   composes: WriteBase;
-  padding: 20px 0 0;
   width: 600px;
+  padding: 20px 0 0;
   resize: none;
 }

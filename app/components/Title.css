@@ -1,0 +1,17 @@
+.Title {
+  /* width: 100%; */
+}
+
+.TitleInput {
+  color: #657b83;
+  background-color: transparent;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  outline: none;
+  padding: 0;
+  text-align: center;
+  width: 600px;
+  font-weight: 600;
+}

@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import { faICursor, faDotCircle, faCircle, faGenderless } from '@fortawesome/fontawesome-free-solid'
 
 // Components
+import Title from './../components/Title';
 import Page from './../components/Page';
 // Actions
 import {
   writeAction,
+  writeTitleAction,
   showAllTextAction,
   filterBySceneAction,
   filterByActAction,
@@ -19,11 +21,13 @@ import styles from './Write.css';
 type Props = {};
 
 const mapStateToProps = (state) => ({
+  title: state.write.title,
   text: state.write.text
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  typeText: (text) => dispatch(writeAction(text)),
+  writeTitle: (title) => dispatch(writeTitleAction(title)),
+  write: (text) => dispatch(writeAction(text)),
   showAllText: () => dispatch(showAllTextAction()),
   filterByScene: () => dispatch(filterBySceneAction()),
   filterByAct: () => dispatch(filterByActAction()),
@@ -37,10 +41,18 @@ class WriteAreaContainer extends Component<Props> {
   render() {
     return (
       <div className={styles.WriteArea}>
-        <Page
-          text={'Textus mc textus'}
-          onType={this.props.typeText}
-        />
+        <div className={styles.TitleArea}>
+          <Title
+            text={this.props.title}
+            onType={this.props.writeTitle}
+          />
+        </div>
+        <div className={styles.TextArea}>
+          <Page
+            text={this.props.text}
+            onType={this.props.write}
+          />
+        </div>
       </div>
     );
   }

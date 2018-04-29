@@ -13,7 +13,6 @@ export default (projectName, content) => {
       reject({});
     } else {
       let path = head(dialogDirectory)+`/${projectName}.txt`;
-      console.log(path);
       fs.writeFile(
         path,
         content,
