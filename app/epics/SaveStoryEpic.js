@@ -3,7 +3,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 
-// Api & Actions
+import Story__StoryFile from './../transformers/Story__StoryFile';
 import saveStory from './../api/saveStory';
 import WriteActions, { saveCompleteAction } from './../Write/WriteActions';
 
@@ -15,7 +15,10 @@ export default (action$, store) => {
       Observable.fromPromise(
         saveStory(
           writeState.title,
-          writeState.text
+          Story__StoryFile({
+            title: writeState.title,
+            text: writeState.text
+          })
         )
       )
       .catch(() => Observable.empty())

@@ -6,9 +6,18 @@ import WriteState, { visibleText } from './WriteState';
 export default (state = new WriteState(), action) => cond([
   [flip(propEq("type", WriteActions.WRITE)), typeText],
   [flip(propEq("type", WriteActions.WRITE_TITLE)), typeTitle],
+  [flip(propEq("type", WriteActions.OPEN_COMPLETE)), openStory],
   // [flip(propEq("type", WriteActions.SAVE)), (state) => {console.log('save'); return state;}],
   [T, identity]
 ])(state, action);
+
+function openStory (state, action) {
+  return assoc(
+    'text',
+    action.payload,
+    state
+  );
+}
 
 function typeTitle (state, action) {
   return assoc(
@@ -19,7 +28,6 @@ function typeTitle (state, action) {
 }
 
 function typeText (state, action) {
-  console.log('type text yoz');
   return assoc(
     'text',
     action.payload,
