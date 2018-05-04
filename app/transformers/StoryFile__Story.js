@@ -1,1 +1,1 @@
-export default () => {}
+export default (storyFile) => JSON.parse(storyFile);

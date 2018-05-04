@@ -12,11 +12,11 @@ export default (state = new WriteState(), action) => cond([
 ])(state, action);
 
 function openStory (state, action) {
-  return assoc(
-    'text',
-    action.payload,
-    state
-  );
+  console.log('opened story', action.payload);
+  return pipe(
+    assoc('title', action.payload.title),
+    assoc('text', action.payload.text)
+  )(state);
 }
 
 function typeTitle (state, action) {

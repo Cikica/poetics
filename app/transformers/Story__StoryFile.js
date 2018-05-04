@@ -1,7 +1,5 @@
-export default ({ title, text }) => {
-  return `
-    TITLE: ${title}
-
-    ${text}
-  `;
-}
+export default ({ title, text }) =>
+JSON.stringify({
+  title,
+  text
+});

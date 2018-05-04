@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs';
 
 // Api & Actions
+import StoryFile__Story from './../transformers/StoryFile__Story';
 import openStory from './../api/openStory';
 import WriteActions, { openCompleteAction } from './../Write/WriteActions';
 
@@ -17,5 +18,6 @@ export default (action$, store) => {
       )
       .catch(() => Observable.empty())
     )
+    .map(StoryFile__Story)
     .map(openCompleteAction);
 };

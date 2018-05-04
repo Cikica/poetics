@@ -21,7 +21,6 @@ import styles from './Write.css';
 type Props = {};
 
 const mapStateToProps = (state) => {
-  console.log('update fuck face', state.write.text)
   return {
     title: state.write.title,
     text: state.write.text
@@ -31,10 +30,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   writeTitle: (title) => dispatch(writeTitleAction(title)),
   write: (text) => dispatch(writeAction(text)),
-  showAllText: () => dispatch(showAllTextAction()),
-  filterByScene: () => dispatch(filterBySceneAction()),
-  filterByAct: () => dispatch(filterByActAction()),
-  filterByOutline: () => dispatch(filterByOutlineAction()),
 });
 
 class WriteAreaContainer extends Component<Props> {

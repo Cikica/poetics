@@ -24,13 +24,9 @@ export const saveAction = () => ({
 });
 
 
-export const saveCompleteAction = () => {
-  return {
-    type: actions.SAVE_COMPLETE,
-    // payload,
-    // error
-  }
-};
+export const saveCompleteAction = () => ({
+  type: actions.SAVE_COMPLETE,
+});
 
 export const openAction = () => ({
   type: actions.OPEN

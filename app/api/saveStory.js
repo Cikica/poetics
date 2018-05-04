@@ -12,7 +12,7 @@ export default (projectName, content) => {
     if (isNil(dialogDirectory)) {
       reject({});
     } else {
-      let path = head(dialogDirectory)+`/${projectName}.txt`;
+      let path = head(dialogDirectory)+`/${projectName}.json`;
       fs.writeFile(
         path,
         content,
